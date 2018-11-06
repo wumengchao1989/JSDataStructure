@@ -54,9 +54,21 @@ BinaryTree.prototype.insertBST = function (value) {
         insertRight(this.root,value)
     }
 };
+
+BinaryTree.prototype.findMax=function(root){
+    let max;
+    if(root.right){
+        this.findMax(root.right)
+    }else{
+        max=root.value;
+        return max;
+    }
+
+};
 let bTree = new BinaryTree(32);
 for (let i = 0; i < 100; i++) {
-    bTree.insertBST(i);
+    bTree.insertBST(1000*Math.random());
 }
-console.log(bTree);
+
+console.log("hello",bTree.findMax(bTree));
 
