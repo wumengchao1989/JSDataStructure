@@ -3,10 +3,11 @@ function TreeNode(value) {
     this.left = this.right = null;
 }
 
-
 function BinaryTree(rootValue) {
     this.root = new TreeNode(rootValue);
     this.queue = [this.root];
+    this.max=0;
+    this.min=0;
 }
 
 BinaryTree.prototype.add = function (value) {
@@ -55,20 +56,20 @@ BinaryTree.prototype.insertBST = function (value) {
     }
 };
 
-BinaryTree.prototype.findMax=function(root){
-    let max;
-    if(root.right){
-        this.findMax(root.right)
+BinaryTree.prototype.findMax=function(node){
+    if(node.right){
+        this.findMax(node.right)
     }else{
-        max=root.value;
-        return max;
+        this.max=node.value
     }
-
 };
-let bTree = new BinaryTree(32);
-for (let i = 0; i < 100; i++) {
-    bTree.insertBST(1000*Math.random());
-}
+BinaryTree.prototype.findMin=function(node){
+    if(node.left){
+        this.findMin(node.left)
+    }else{
+        this.min=node.value
+    }
+};
 
-console.log("hello",bTree.findMax(bTree));
+export default BinaryTree;
 

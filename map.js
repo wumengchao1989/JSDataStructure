@@ -9,7 +9,7 @@ let p1=new Promise((resolve)=>{
 });
 let p2=new Promise((resolve)=>{
     let b=parseInt(Math.random()*5000,10);
-    console.log("b origin",b)
+    console.log("b origin",b);
     setTimeout(()=>{
         resolve(()=>{
             console.log("b=",b)
@@ -19,7 +19,7 @@ let p2=new Promise((resolve)=>{
 
 let p3=new Promise((resolve)=>{
     let c=parseInt(Math.random()*5000,10);
-    console.log("c origin",c)
+    console.log("c origin",c);
     setTimeout(()=>{
         resolve(()=>{
             console.log("c=",c)
