@@ -7,6 +7,8 @@ function TreeNode(value) {
 function BinaryTree(rootValue) {
     this.root = new TreeNode(rootValue);
     this.queue = [this.root];
+    this.max = 0;
+    this.min = 0;
 }
 
 BinaryTree.prototype.add = function (value) {
@@ -48,27 +50,93 @@ BinaryTree.prototype.insertBST = function (value) {
             }
         }
     }
-    if(value<this.root.value){
-        insertLeft(this.root,value)
-    }else{
-        insertRight(this.root,value)
+
+    if (value < this.root.value) {
+        insertLeft(this.root, value)
+    } else {
+        insertRight(this.root, value)
     }
 };
 
-BinaryTree.prototype.findMax=function(root){
-    let max;
-    if(root.right){
-        this.findMax(root.right)
-    }else{
-        max=root.value;
-        return max;
+BinaryTree.prototype.findMax = function (node) {
+    if (node.right) {
+        this.findMax(node.right)
+    } else {
+        this.max = node.value
+    }
+};
+
+BinaryTree.prototype.findMin = function (node) {
+    if (node.left) {
+        this.findMin(node.left)
+    } else {
+        this.min = node.value
+    }
+};
+
+BinaryTree.prototype.preorderTraversal = function (node) {
+    if(node){
+        console.log("preOrder", node.value);
+        this.preorderTraversal(node.left);
+        this.preorderTraversal(node.right);
     }
 
 };
+
+BinaryTree.prototype.postorderTraversal = function (node) {
+    if(node) {
+        console.log("postOrder", node.value);
+        this.postorderTraversal(node.right);
+        this.postorderTraversal(node.left);
+    }
+
+};
+
+BinaryTree.prototype.inorderTraversal = function (node) {
+    if(node){
+        this.inorderTraversal(node.left);
+        console.log("inOrder", node.value);
+        this.inorderTraversal(node.right);
+    }
+
+};
+
+BinaryTree.prototype.levelTraversal = function () {
+    if (this.queue.length > 0) {
+        let node = this.queue.shift();
+        console.log("level", node.value);
+        if (node.left) {
+            this.queue.push(node.left);
+        }
+        if (node.right) {
+            this.queue.push(node.right);
+        }
+        this.levelTraversal();
+    }
+};
+let a = [
+    23,
+    234, 12, 56, 21, 98, 99, 123, 43, 46, 78, 89, 11, 8, 89, 100, 123
+];
+
+
 let bTree = new BinaryTree(32);
-for (let i = 0; i < 100; i++) {
-    bTree.insertBST(1000*Math.random());
+console.time("insert");
+for (let i = 0; i < a.length; i++) {
+    bTree.insertBST(a[i]);
 }
 
-console.log("hello",bTree.findMax(bTree));
+
+/*console.timeEnd("insert");
+console.time("find");
+bTree.findMax(bTree.root);
+console.timeEnd("find");*/
+bTree.levelTraversal();
+bTree.inorderTraversal(bTree.root);
+bTree.preorderTraversal(bTree.root);
+
+/*console.log(bTree.max);
+console.log(bTree.min);*/
+
+
 
