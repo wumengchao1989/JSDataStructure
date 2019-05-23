@@ -1,0 +1,23 @@
+{
+  "name": "jsdatastructure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.25.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wumengchao1989/JSDataStructure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wumengchao1989/JSDataStructure/issues"
+  },
+  "homepage": "https://github.com/wumengchao1989/JSDataStructure#readme"
+}
